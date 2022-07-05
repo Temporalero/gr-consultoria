@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ActionpadWidgetControl" t-inherit="point_of_sale.ActionpadWidget" t-inherit-mode="extension" owl="1">
+        <xpath expr="//button[hasclass('pay')]" position="replace">
+            <button class="button pay" t-on-click="trigger('click-pay')" t-att-disabled="!is_paybox"
+                    t-att-class="{'disabled-mode': !is_paybox}">
+                <div class="pay-circle">
+                    <i class="fa fa-chevron-right" role="img" aria-label="Pay" title="Pay"/>
+                </div>
+                Pagos
+            </button>
+        </xpath>
+    </t>
+    <t t-name="SendOrder" owl="1">
+        <div class="ticket-button" t-on-click="onClick">
+            <i class="fa fa-send"/>
+        </div>
+    </t>
+    <t t-name="ResOrder" owl="1">
+        <div class="ticket-button" t-on-click="onClick">
+            <i class="fa fa-get-pocket"/>
+        </div>
+    </t>
+    <t t-name="Chrome" t-inherit="point_of_sale.Chrome" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-branding')]" position="inside">
+            <ResOrder/>
+            <SendOrder/>
+        </xpath>
+    </t>
+    <t t-name="Buttonsend" owl="1">
+       <div role="dialog" class="modal-dialog">
+           <div class="popup">
+                <div class="title">
+                   <p><t t-esc="props.title"/></p>
+                    <input type="text" t-model="state.name" t-ref="session" disabled="1"
+                           style="box-shadow: 0px 0px 0px 3px #6EC89B;"/>
+               </div>
+               <div class="body" style="overflow: auto; height: 250px;">
+                   <div class="row">
+                       <t t-foreach="props.sessions" t-as="s" t-key="props.sessions">
+                           <div class="session-dis" t-att-session-id="s.id" t-on-click="selection"
+                                t-att-sname="s.config_id[1]">
+                               <i class="fa fa-desktop" style="font-size: 300%" t-att-session-id="s.id"
+                                  t-att-sname="s.config_id[1]"/>
+                               <hr/>
+                               <t t-esc="s.config_id[1]" t-att-session-id="s.id" t-att-sname="s.config_id[1]"/>
+                           </div>
+                       </t>
+                   </div>
+               </div>
+               <div class="footer">
+                   <div class="button" t-on-click="confirm">
+                       <t t-esc="props.confirmText"/>
+                   </div>
+
+                  <!-- <div class="button" t-on-click="confirmAndPrint">
+                       <t t-esc="props.printConfirmText"/>
+                   </div>-->
+
+                   <div class="button cancel" t-on-click="cancel">
+                       <t t-esc="props.cancelText"/>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </t>
+    <t t-name="ButtonReceive" owl="1">
+        <div role="dialog" class="modal-dialog">
+           <div class="popup">
+                <p class="title">
+                   <t t-esc="props.title"/>
+                </p>
+               <input type="text" t-model="state.name" t-ref="session" disabled="1"
+                           style="box-shadow: 0px 0px 0px 3px #6EC89B;"/>
+               <div class="body" style="overflow: auto; height: 250px;">
+                   <table class="table">
+                       <tr>
+                           <th>Pedido</th>
+                           <th>Punto de Venta</th>
+<!--                           <th>Vendedor</th>-->
+                       </tr>
+                       <t t-foreach="props.orders" t-as="o">
+                           <tr class="tam" t-att-orderid="o.id" t-on-click="selection" t-att-sname="o.orden" t-att-orderp="o.pagado">
+                               <td t-esc="o.orden" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>
+                               <td t-esc="o.pos_name" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>
+<!--                               <td t-esc="o.cajero" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>-->
+                           </tr>
+                       </t>
+                   </table>
+               </div>
+               <div class="footer">
+                   <div class="button" t-on-click="GetOrder">
+                       <t t-esc="props.confirmText"/>
+                   </div>
+
+                   <div class="button cancel" t-on-click="cancel">
+                       <t t-esc="props.cancelText"/>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

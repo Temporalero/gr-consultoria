@@ -1,0 +1,4 @@
+[submodule "colinak/partner_delivery_routes"]
+	path = colinak/partner_delivery_routes
+	url = git@github.com:colinak/partner_delivery_routes.git
+	branch = 15.0

@@ -124,12 +124,21 @@ odoo.define("pos_send_orders.SendOrder", function (require) {
                                 //nueva orden
                                 let new_order = this.env.pos.add_new_order();
                                 this.env.pos.set_order(new_order);
+                                console.log("PAYLOAD.. send btn");
+                                console.log(payload);
+                                if(payload.print){
+                                    console.log("Opening print window");
+                                    this.showScreen("PrintEnvScreen", { order: order});
+                                }
+                                else{
+                                    this.showScreen('ProductScreen');
+                                    this.showPopup("ConfirmPopup",{
+                                        title: "Orden Enviada",
+                                        body: "El pedido fue enviado con exito",
+                                    });
 
-                                this.showScreen('ProductScreen');
-                                this.showPopup("ConfirmPopup",{
-                                title: "Orden Enviada",
-                                body: "El pedido fue enviado con exito",
-                                });
+                                }
+
 
                                 order.destroy({'reason':'abandon'});
                             }else{

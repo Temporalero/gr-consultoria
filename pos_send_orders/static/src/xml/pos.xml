@@ -49,41 +49,48 @@
                    </div>
                </div>
                <div class="footer">
-                   <div class="button" t-on-click="confirm">
+               <!--
+                    <div class="button" t-on-click="confirm">
                        <t t-esc="props.confirmText"/>
-                   </div>
+                    </div>
+                -->
+                    <div class="button" t-on-click="confirmAndPrint">
+                        <t t-esc="props.printConfirmText"/>
+                    </div>
 
-                  <!-- <div class="button" t-on-click="confirmAndPrint">
-                       <t t-esc="props.printConfirmText"/>
-                   </div>-->
-
-                   <div class="button cancel" t-on-click="cancel">
+                    <div class="button cancel" t-on-click="cancel">
                        <t t-esc="props.cancelText"/>
-                   </div>
+                    </div>
+                    
                </div>
            </div>
        </div>
    </t>
     <t t-name="ButtonReceive" owl="1">
         <div role="dialog" class="modal-dialog">
-           <div class="popup">
+           <div style="width: 800px;max-width: 1200px;" class="popup">
                 <p class="title">
                    <t t-esc="props.title"/>
                 </p>
-               <input type="text" t-model="state.name" t-ref="session" disabled="1"
-                           style="box-shadow: 0px 0px 0px 3px #6EC89B;"/>
+                <div class="sendordertextbox">
+                    <input type="text"  id="selected_order_input" placeholder="Orden seleccionada" t-model="state.name" t-ref="session" disabled="1"/>
+                    <input type="text" id="search_order_input" placeholder="Búsqueda" t-on-keyup="name_filter">
+                    </input>
+                    
+                </div>
+
                <div class="body" style="overflow: auto; height: 250px;">
-                   <table class="table">
+                   <table id="received_orders_table" class="table" style="min-width: -webkit-fill-available;">
                        <tr>
                            <th>Pedido</th>
                            <th>Punto de Venta</th>
-<!--                           <th>Vendedor</th>-->
+                           <th>Cliente</th>
                        </tr>
                        <t t-foreach="props.orders" t-as="o">
                            <tr class="tam" t-att-orderid="o.id" t-on-click="selection" t-att-sname="o.orden" t-att-orderp="o.pagado">
                                <td t-esc="o.orden" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>
                                <td t-esc="o.pos_name" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>
-<!--                               <td t-esc="o.cajero" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>-->
+                               <td t-esc="o.client_name" t-att-orderid="o.id" t-att-sname="o.orden" t-att-orderp="o.pagado"/>
                            </tr>
                        </t>
                    </table>

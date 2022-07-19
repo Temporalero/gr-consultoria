@@ -3,7 +3,6 @@ odoo.define('pos_send_orders.ButtonReceive', function (require) {
 
     const AbstractAwaitablePopup = require('point_of_sale.AbstractAwaitablePopup');
     const Registries = require('point_of_sale.Registries');
-//    const OrderFetcher = require('point_of_sale.OrderFetcher');
     const SaleOrderFetcher = require('pos_sale.SaleOrderFetcher');
     const { useState, useRef } = owl.hooks;
     class ButtonReceive extends AbstractAwaitablePopup {
@@ -61,6 +60,29 @@ odoo.define('pos_send_orders.ButtonReceive', function (require) {
             }
             this.trigger('close-popup');
             return orders
+        }
+
+        name_filter(event){
+            console.log("Filtrando... xD ");
+            var search_input = document.getElementById("search_order_input");
+            var filter = search_input.value.toUpperCase();
+            var orders_table = document.getElementById("received_orders_table");
+            var tr = orders_table.getElementsByTagName("tr");
+            
+            var td_client_name, td_order_name, i, txtValue_client, txtValue_order;
+            for (i = 0; i < tr.length; i++) {
+                td_client_name = tr[i].getElementsByTagName("td")[2];
+                td_order_name = tr[i].getElementsByTagName("td")[0];
+                if (td_client_name && td_order_name ) {
+                  txtValue_client = td_client_name.textContent || td_client_name.innerText;
+                  txtValue_order = td_order_name.textContent || td_order_name.innerText;
+                  if (txtValue_client.toUpperCase().indexOf(filter) > -1 || txtValue_order.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }
+            }
         }
     }
 

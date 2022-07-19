@@ -12,7 +12,6 @@ odoo.define('pos_send_orders.Buttonsend', function (require) {
         selection(event){
             this.state.name = event.target.getAttribute('sname');
             this.state.inputValue = event.target.getAttribute('session-id');
-            this.state.inputValue = event.target.getAttribute('session-id');
         }
         async getPayload() {
             let val = this.state.inputValue;
@@ -26,19 +25,19 @@ odoo.define('pos_send_orders.Buttonsend', function (require) {
                 order: ord
             };
         }
-        /*async confirmAndPrint(event){
+        async confirmAndPrint(event){
             let pay = await this.getPayload();
             pay.print = true;
             this.props.resolve({ confirmed: true, payload: pay});
             this.trigger('close-popup');
-        }*/
+        }
     }
 
     //Create products popup
     Buttonsend.template = 'Buttonsend';
     Buttonsend.defaultProps = {
         confirmText: 'Enviar',
-//        printConfirmText: 'Imprimir y Enviar',
+        printConfirmText: 'Enviar',
         cancelText: 'Cancelar',
         title: 'Cajas disponibles',
         body: '',

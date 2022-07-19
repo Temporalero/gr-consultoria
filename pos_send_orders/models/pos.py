@@ -29,17 +29,18 @@ class PosSession(models.Model):
 
     def envia(self, data):
         try:
-            _log.info("Creating order temporal.. ")
             data = json.loads(data)
             data['session'] = self.name
             data['unpaid_orders'][0]['pos_session_id'] = self.id
             data['unpaid_orders'][0]['user_id'] = self.user_id.id
+            client_name = self.env['res.partner'].browse(data['unpaid_orders'][0]['partner_id'])
             dic = {
                 'session_id': self.id,
                 'json': json.dumps(data),
                 'orden': data['unpaid_orders'][0]['name'],
                 # 'cajero': self.env['hr.employee'].browse(data['unpaid_orders'][0]['employee_id']).name if data['unpaid_orders'][0]['employee_id'] else "",
-                'pos_name': self.config_id.display_name
+                'pos_name': self.config_id.display_name,
+                'client_name': client_name.name if client_name else ""
             }
             self.env['pos.order.temp'].create(dic)
             _log.info("ORDER TEMP CREATED")
@@ -65,7 +66,8 @@ class PosSession(models.Model):
                 'id': order.id,
                 'orden': order.orden,
                 'pos_name': order.pos_name,
-                'pagado': pagado
+                'pagado': pagado,
+                'client_name': order.client_name if order.client_name else "",
             }
             lista.append(data)
         return lista
@@ -93,3 +95,4 @@ class PosOrderTemp(models.TransientModel):
     orden = fields.Char('Referencia de orden')
     cajero = fields.Char('Cajero')
     pos_name = fields.Char('Nombre punto de ventaa')
+    client_name = fields.Char("Cliente")

@@ -1,0 +1,28 @@
+.sendordertextbox {
+/*
+    flex-grow: 1;
+    position: relative;
+    */
+    display: flex; /* 2. display flex to the rescue */
+  flex-direction: row;
+}
+
+.sendordertextbox input {
+    /*width: 150px;*/
+    display: block;
+    border: 1px solid #cecbcb;
+    padding: 10px 20px;
+    margin: 6px;
+    background-color: white;
+    border-radius: 20px;
+    font-family: "Lato","Lucida Grande", Helvetica, Verdana, Arial;
+    font-size: 13px;
+
+}
+
+#search_order_input {
+  background-image: url('/pos_send_orders/static/src/img/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+}

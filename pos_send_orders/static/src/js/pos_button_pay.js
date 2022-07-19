@@ -11,8 +11,6 @@ odoo.define("pos_send_orders.PosButtonPay", function (require) {
         class extends ActionpadWidget {
             get is_paybox() {
 //                return this.env.pos.user.user_pay;
-                console.log(" CALCULANDO SI SE PUEDE O NO MOSTRAR EL BOTON");
-                console.log(this.env.pos.env.pos.config.is_cashbox);
                 return this.env.pos.env.pos.config.is_cashbox;
             }
         }

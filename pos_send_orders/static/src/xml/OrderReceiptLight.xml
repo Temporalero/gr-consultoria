@@ -81,12 +81,49 @@
                     <WrappedProductNameLines line="line" />
 <!--                    <div class="pos-receipt-right-align">$ ________</div>-->
                     <div class="pos-receipt-left-padding">
-                        Cantidad: <t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+                        <!--Cantidad:--> <t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
                         <t t-if="line.unit_name !== 'Units'" t-esc="line.unit_name" />
+                        x
+                        <t t-esc="env.pos.format_currency_no_symbol(line.price_display_one)" />
+                        <span class="price_display pos-receipt-right-align">
+                            <t t-esc="env.pos.format_currency_no_symbol(line.price_display)" />
+                        </span>
                     </div>
                     <br/>
                 </t>
             </div>
+
+            <!-- Subtotal -->
+            <t t-if="!isTaxIncluded">
+                <div class="pos-receipt-right-align">--------</div>
+                <br/>
+                <div>Subtotal<span t-esc="env.pos.format_currency(receipt.subtotal)" class="pos-receipt-right-align"/></div>
+                <t t-foreach="receipt.tax_details" t-as="tax" t-key="tax.name">
+                    <div class="responsive-price">
+                        <t t-esc="tax.name" />
+                        <span t-esc='env.pos.format_currency_no_symbol(tax.amount)' class="pos-receipt-right-align"/>
+                    </div>
+                </t>
+            </t>
+
+            <!-- Total -->
+            <div class="pos-receipt-right-align">--------</div>
+            <br/>
+            <div class="pos-receipt-amount">
+                TOTAL
+                <span t-esc="env.pos.format_currency(receipt.total_with_tax)" class="pos-receipt-right-align"/>
+            </div>
+            <t t-if="receipt.total_rounded != receipt.total_with_tax">
+                <div class="pos-receipt-amount">
+                  Rounding
+                <span t-esc='env.pos.format_currency(receipt.rounding_applied)' class="pos-receipt-right-align"/>
+                </div>
+                <div class="pos-receipt-amount">
+                  To Pay
+                 <span t-esc='env.pos.format_currency(receipt.total_rounded)' class="pos-receipt-right-align"/>
+              </div>
+            </t>
+            <br/><br/>
 
             <div class="before-footer" />
 

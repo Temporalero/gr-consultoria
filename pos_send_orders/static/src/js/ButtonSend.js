@@ -16,10 +16,10 @@ odoo.define('pos_send_orders.Buttonsend', function (require) {
         async getPayload() {
             let val = this.state.inputValue;
             let ord = this.env.pos.get_order().name;
-            console.log("VALUE:::  ");
-            console.log(val);
-            console.log("ORDER ::  ");
-            console.log(ord);
+//            console.log("VALUE:::  ");
+//            console.log(val);
+//            console.log("ORDER ::  ");
+//            console.log(ord);
             return {
                 value: val,
                 order: ord

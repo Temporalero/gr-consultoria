@@ -43,23 +43,23 @@ class PosSession(models.Model):
                 'client_name': client_name.name if client_name else ""
             }
             self.env['pos.order.temp'].create(dic)
-            _log.info("ORDER TEMP CREATED")
+            # _log.info("ORDER TEMP CREATED")
         except Exception as e:
             _log.warning(e)
             return False
         return True
 
     def ver(self):
-        _log.info("Viendo orders a recibir")
+        # _log.info("Viendo orders a recibir")
         pos_order = self.env['pos.order'].search([('pos_reference','in',self.orders.mapped('orden'))])
-        _log.info("POS ORDER... %s" % pos_order)
+        # _log.info("POS ORDER... %s" % pos_order)
         pedidos_pagados = {o.pos_reference: '1' if o.state != 'draft' else '0' for o in pos_order}
-        _log.info(" PEDIDOS PAGADOS::: %s " % pedidos_pagados)
+        # _log.info(" PEDIDOS PAGADOS::: %s " % pedidos_pagados)
         lista = []
 
         for order in self.orders:
             pagado = pedidos_pagados.get(order.orden,'0')
-            _log.info("pagado.. %s" % pagado)
+            # _log.info("pagado.. %s" % pagado)
             if pagado == '1':
                 continue
             data = {

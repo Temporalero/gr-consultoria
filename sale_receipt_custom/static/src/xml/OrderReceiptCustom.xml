@@ -137,7 +137,7 @@
                 <br/>
                 <br/>
 
-                <div>***(<t t-esc="env.pos.get_currency_text(receipt.total_with_tax)"/>)*** </div>
+                <div>***(<t t-esc="receipt.total_with_tax_text"/>)*** </div>
                 <!-- Payment Lines -->
 
                 <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">

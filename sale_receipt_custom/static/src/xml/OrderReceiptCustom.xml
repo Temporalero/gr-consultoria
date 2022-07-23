@@ -24,16 +24,16 @@
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
                     <t t-if="receipt.company.street">
-                        <span t-esc="doc.company_id.street"/>
-                        <span t-esc="doc.company_id.street2"/>
+                        <span t-esc="receipt.company_id.street"/>
+                        <span t-esc="receipt.company_id.street2"/>
                         <br/>
-                        <span t-esc="doc.company_id.city"/>
-                        <span t-esc="doc.company_id.state_id.name"/>
-                        <span t-esc="doc.company_id.zip"/>
+                        <span t-esc="receipt.company_id.city"/>
+                        <span t-esc="receipt.company_id.state_id.name"/>
+                        <span t-esc="receipt.company_id.zip"/>
                         <br/>
                     </t>
 
-                     <t t-if="receipt.company.email">
+                    <t t-if="receipt.company.email">
                         <div><t t-esc="receipt.company.email" /></div>
                     </t>
                     <t t-if="receipt.company.website">
@@ -43,7 +43,6 @@
                     <t t-if="receipt.company.phone">
                         <div>TEL:<t t-esc="receipt.company.phone"/></div>
                     </t>
-
 
 
                     <t t-if="receipt.header_html">
@@ -64,9 +63,56 @@
 
                 <!-- Orderlines -->
 
-                <div class="orderlines">
-                    <t t-call="OrderLinesReceipt"/>
-                </div>
+                
+
+                <table class="table table-striped" style="font-size: 300%;">
+                    <thead>
+                        <tr>
+                            <th scope="col"/>
+                            <th scope="col">Descripción</th>
+                            <th scope="col"/>
+                        </tr>
+                        <tr>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="receipt.orderlines" t-as="line">
+                            <tr>
+                                <th scope="row" colspan="3">
+                                    <span t-field="line.name"/>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-field="line.product_uom_qty"/>
+                                    <span t-field="line.product_uom" groups="uom.group_uom"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.price_unit"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.price_subtotal"
+                                          groups="account.group_show_line_subtotals_tax_excluded"/>
+                                    <span t-field="line.price_total"
+                                          groups="account.group_show_line_subtotals_tax_included"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <th scope="col">Art:
+                                <t t-esc="doc.get_total_quantity()"
+                                   t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>
+                            </th>
+                            <th scope="col"/>
+                            <th scope="col">Total:
+                                <span t-field="doc.amount_total"/>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <!-- Subtotal -->
 

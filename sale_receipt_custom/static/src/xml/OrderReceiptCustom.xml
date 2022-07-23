@@ -95,7 +95,7 @@
                                    <div><t t-esc="line.price_display_one"/></div>
                                 </td>
                                 <td>
-                                    <div ><t t-esc="'$'+str(line.price_display)" /></div>
+                                    <div><t t-esc="line.price_display"/></div>
 
                                 </td>
                             </tr>

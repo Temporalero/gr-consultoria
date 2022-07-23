@@ -70,7 +70,7 @@
                                     <div>Descripcion</div>
                              </th>
                         </tr>
-                        <tr style="display: flex;flex-wrap: wrap;align-items: center; justify-content: space-between;flex-basis: 33.333333%">
+                        <tr>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Importe</th>
@@ -81,7 +81,7 @@
                         <t t-set="total_sum" t-value="0"/>
 
                         <t t-foreach="receipt.orderlines" t-as="line">
-                            <tr>
+                            <tr style="margin-top: 20px;">
                                 <th scope="row" colspan="3">
                                     <div><t t-esc="line.product_name_wrapped[0]"/></div>
                                 </th>
@@ -95,7 +95,7 @@
                                    <div><t t-esc="line.price_display_one"/></div>
                                 </td>
                                 <td>
-                                    <div><t t-esc="line.price_display"/></div>
+                                    <div ><t t-esc="'$'+str(line.price_display)" /></div>
 
                                 </td>
                             </tr>

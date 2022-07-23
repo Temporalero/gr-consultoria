@@ -83,21 +83,21 @@
                         <t t-foreach="receipt.orderlines" t-as="line">
                             <tr>
                                 <th scope="row" colspan="3">
-                                    <span t-field="line.name"/>
+                                    <t t-esc="line.name"/>
                                 </th>
                             </tr>
                             <tr>
                                 <td>
-                                    <span t-field="line.product_uom_qty"/>
+                                    <t t-esc="line.product_uom_qty"/>
                                     <t t-set="total_art" t-value="total_art + line.product_uom_qty"/>
-                                    <span t-field="line.product_uom"/>
+                                    <t t-esc="line.product_uom"/>
                                 </td>
                                 <td>
-                                    <span t-field="line.price_unit"/>
+                                    <t t-esc="line.price_unit"/>
                                 </td>
                                 <td>
-                                    <span t-field="line.price_subtotal"/>
-                                    <span t-field="line.price_total"/>
+                                    <t t-esc="line.price_subtotal"/>
+                                    <t t-esc="line.price_total"/>
                                 </td>
                             </tr>
                         </t>

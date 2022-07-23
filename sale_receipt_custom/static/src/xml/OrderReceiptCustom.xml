@@ -81,7 +81,7 @@
                         <t t-set="total_sum" t-value="0"/>
 
                         <t t-foreach="receipt.orderlines" t-as="line">
-                            <tr style="margin-top: 20px;">
+                            <tr>
                                 <th scope="row" colspan="3">
                                     <div><t t-esc="line.product_name_wrapped[0]"/></div>
                                 </th>

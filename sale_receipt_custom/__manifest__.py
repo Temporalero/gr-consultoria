@@ -5,7 +5,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.html).
 
 {
-    'name': 'Recibos de ventas personalizados ',
+    'name': 'Recibos de ventas personalizados',
     'version': '15.0.1.0.1',
     'category': 'sale',
     'author': 'Ing. Alejandro Garcia Magaña',
@@ -20,6 +20,12 @@
     'data': [
         'report/sale_report_inherit.xml',
     ],
+    'assets': {
+        'web.assets_qweb': [
+            'sale_receipt_custom/static/src/xml/OrderReceiptCustom.xml',
+
+        ],
+    },
     'demo': [],
     'external_dependencies': {
     },

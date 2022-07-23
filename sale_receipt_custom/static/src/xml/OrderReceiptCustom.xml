@@ -24,12 +24,12 @@
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
                     <t t-if="receipt.company.street">
-                        <span t-esc="receipt.company_id.street"/>
-                        <span t-esc="receipt.company_id.street2"/>
+                        <t t-esc="receipt.company_id.street"/>
+                        <t t-esc="receipt.company_id.street2"/>
                         <br/>
-                        <span t-esc="receipt.company_id.city"/>
-                        <span t-esc="receipt.company_id.state_id.name"/>
-                        <span t-esc="receipt.company_id.zip"/>
+                        <t t-esc="receipt.company_id.city"/>
+                        <t t-esc="receipt.company_id.state_id.name"/>
+                        <t t-esc="receipt.company_id.zip"/>
                         <br/>
                     </t>
 
@@ -83,7 +83,7 @@
                         <t t-foreach="receipt.orderlines" t-as="line">
                             <tr>
                                 <th scope="row" colspan="3">
-                                    <div>><t t-esc="line.product_name_wrapped[0]"/></div
+                                    <div><t t-esc="line.product_name_wrapped[0]"/></div>
                                 </th>
                             </tr>
                             <tr>

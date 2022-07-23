@@ -25,7 +25,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
         },
     });
      models.Order = models.Order.extend({
-       
+
         export_for_printing: async function(){
             console.log("REDER TICKET")
             var orderlines = [];
@@ -73,7 +73,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 method:'get_currency_to_text',
                 args: [{'amount':this.get_total_with_tax()}],
             };
-
+            rpc = this.get('rpc')
             total_in_text =  await rpc(params);
             console.log("Total en text")
             console.log(total_in_text)

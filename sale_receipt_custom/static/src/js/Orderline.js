@@ -25,10 +25,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
         },
     });
      models.Order = models.Order.extend({
-        initialize: function(attr, options) {
-            super_order_line_model.initialize.call(this, attr, options);
-            this.rpc = rpc;
-        },
+       
         export_for_printing: async function(){
             console.log("REDER TICKET")
             var orderlines = [];

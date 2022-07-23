@@ -59,11 +59,11 @@
                     </t>
                 </div>
                 <br/>
-                <br/>
+
 
                 <!-- Orderlines -->
 
-                
+
 
                 <table class="table table-striped" style="font-size: 300%;">
                     <thead>
@@ -79,6 +79,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <t t-set="total_art" t-value="0"/>
+
                         <t t-foreach="receipt.orderlines" t-as="line">
                             <tr>
                                 <th scope="row" colspan="3">
@@ -88,6 +90,7 @@
                             <tr>
                                 <td>
                                     <span t-field="line.product_uom_qty"/>
+                                    <t t-set="total_art" t-value="total_art + line.product_uom_qty"/>
                                     <span t-field="line.product_uom" groups="uom.group_uom"/>
                                 </td>
                                 <td>
@@ -98,17 +101,18 @@
                                           groups="account.group_show_line_subtotals_tax_excluded"/>
                                     <span t-field="line.price_total"
                                           groups="account.group_show_line_subtotals_tax_included"/>
+
                                 </td>
                             </tr>
                         </t>
                         <tr>
                             <th scope="col">Art:
-                                <t t-esc="doc.get_total_quantity()"
+                                <t t-esc="total_art"
                                    t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>
                             </th>
                             <th scope="col"/>
                             <th scope="col">Total:
-                                <span t-field="doc.amount_total"/>
+                                <span t-field="receipt.amount_total"/>
                             </th>
                         </tr>
                     </tbody>

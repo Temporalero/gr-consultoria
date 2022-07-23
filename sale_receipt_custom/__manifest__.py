@@ -24,6 +24,10 @@
         'report/sale_report_inherit.xml',
     ],
     'assets': {
+        'point_of_sale.assets': [
+            'sale_receipt_custom/static/src/js/Orderline.js',
+
+        ],
         'web.assets_qweb': [
             'sale_receipt_custom/static/src/xml/OrderReceiptCustom.xml',
 
@@ -38,4 +42,3 @@
     'installable': True,
     'auto_install': False,
 }
-

@@ -6,7 +6,7 @@
             <div class="pos-receipt">
                 <t t-if="receipt.company.logo">
                     <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"
-                         style="height: auto; width: 350px; align: center;"/>
+                         style="height: auto; width: 30%; align: center;"/>
                     <br/>
                 </t>
                 <t t-if="!receipt.company.logo">
@@ -63,7 +63,7 @@
 
                 <!-- Orderlines -->
 
-                <table class="table table-striped" style="font-size: 300%;">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col"/>
@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                     </tbody>
                 </table>
 

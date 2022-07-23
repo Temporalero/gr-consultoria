@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template id="template" xml:space="preserve">
 
-    <t t-name="OrderReceiptCustom" t-extend="OrderReceipt">
-        <t t-jquery='.pos-receipt' t-operation='replace'>
+    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('oe_button_box')]" position="replace">
             <p>Your Company Name</p>
-        </t>
+        </xpath>
     </t>
 
 </template>

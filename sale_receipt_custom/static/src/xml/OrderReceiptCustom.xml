@@ -77,40 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-set="total_art" t-value="0"/>
-
-                        <t t-foreach="receipt.orderlines" t-as="line">
-                            <tr>
-                                <th scope="row" colspan="3">
-                                    <span t-field="line.name"/>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <span t-field="line.product_uom_qty"/>
-                                    <t t-set="total_art" t-value="total_art + line.product_uom_qty"/>
-                                    <span t-field="line.product_uom"/>
-                                </td>
-                                <td>
-                                    <span t-field="line.price_unit"/>
-                                </td>
-                                <td>
-
-                                    <span t-field="line.price_total"/>
-
-                                </td>
-                            </tr>
-                        </t>
-                        <tr>
-                            <th scope="col">Art:
-                                <t t-esc="total_art"
-                                   t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;precision&quot;: 0}"/>
-                            </th>
-                            <th scope="col"/>
-                            <th scope="col">Total:
-                                <span t-field="receipt.amount_total"/>
-                            </th>
-                        </tr>
+                        
                     </tbody>
                 </table>
 

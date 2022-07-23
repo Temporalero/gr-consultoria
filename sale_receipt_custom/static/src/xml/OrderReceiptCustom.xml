@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template id="template" xml:space="preserve">
 
-    <t t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+    <t t-name="OrderReceiptCustom" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
         <xpath expr="//div[hasclass('oe_button_box')]" position="replace">
             <p>Your Company Name</p>
         </xpath>

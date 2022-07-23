@@ -15,7 +15,9 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             };
 
             const text_currency = await this.rpc(params);
+            console.log('RESPUESTA:: ');
             console.log(text_currency);
+            console.log(text_currency['text']);
             return text_currency
 
         },

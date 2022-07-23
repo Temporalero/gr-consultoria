@@ -19,5 +19,5 @@ class SaleOrderTextAmount(models.Model):
         _log.info(vals)
         text = self.env.user.company_id.currency_id.amount_to_text(vals['amount'])
         _log.info("Val text %s",text)
-        return text
+        return {'text':text,'amount':vals['amount']}
 

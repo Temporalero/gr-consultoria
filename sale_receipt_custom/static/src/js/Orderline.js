@@ -6,11 +6,17 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
 
     models.PosModel = models.PosModel.extend({
 
-        get_currency_text: function(amount) {
+        get_currency_text: async function(amount) {
             console.log("##Order##");
-            console.log(this.order);
-            console.log(amount);
-            return amount
+            const params = {
+                model: 'sale.order',
+                method:'get_currency_to_text',
+                args: [{'amount':amount}],
+            };
+
+            const text_currency = await this.rpc(params);
+            console.log(text_currency);
+            return text_currency
 
         },
     });

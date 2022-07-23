@@ -81,6 +81,7 @@
                         <t t-set="total_sum" t-value="0"/>
 
                         <t t-foreach="receipt.orderlines" t-as="line">
+                            <br/>
                             <tr>
                                 <th scope="row" colspan="3">
                                     <div><t t-esc="line.product_name_wrapped[0]"/></div>
@@ -89,7 +90,7 @@
                             <tr>
                                 <td>
                                     <div><t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
-                                    <t t-if="!line.is_in_unit" t-esc="line.unit_name" /></div>
+                                    </div>
                                 </td>
                                 <td>
                                    <div><t t-esc="line.price_display_one"/></div>

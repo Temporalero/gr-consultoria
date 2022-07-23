@@ -81,6 +81,9 @@
                         <t t-set="total_sum" t-value="0"/>
 
                         <t t-foreach="receipt.orderlines" t-as="line">
+                            <t t-set="cantidad"
+                               t-value="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+                            <t t-set="total_art" t-value="total_art + cantidad"/>
                             <br/>
                             <tr>
                                 <th scope="row" colspan="3">
@@ -89,19 +92,27 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <div><t t-esc="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+                                    <div><t t-esc="cantidad"/>
                                     </div>
                                 </td>
                                 <td>
                                    <div><t t-esc="line.price_display_one"/></div>
                                 </td>
                                 <td>
-                                    <div><t t-esc="line.price_display"/></div>
+                                    <div><t t-esc="env.pos.format_currency(line.price_display)"/></div>
 
                                 </td>
                             </tr>
                         </t>
-
+                        <tr>
+                            <th scope="col"><div>Art:
+                                <t t-esc="total_art"/></div>
+                            </th>
+                            <th scope="col"/>
+                            <th scope="col"><div>Total:
+                                <span t-esc="env.pos.format_currency(receipt.total_with_tax)"/></div>
+                            </th>
+                        </tr>
                     </tbody>
                 </table>
 

@@ -15,7 +15,10 @@
 
     'depends': [
         'sale',
-        'partner_delivery_routes'
+        'partner_delivery_routes',
+        "base",
+        "point_of_sale",
+        "pos_sale",
     ],
     'data': [
         'report/sale_report_inherit.xml',
@@ -26,7 +29,7 @@
 
         ],
     },
-    
+
     'demo': [],
     'external_dependencies': {
     },

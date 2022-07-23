@@ -71,9 +71,9 @@
                              </th>
                         </tr>
                         <tr>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Importe</th>
+                            <th scope="col" style="width:33%">Cantidad</th>
+                            <th scope="col" style="width:33%">Precio</th>
+                            <th scope="col" style="width:33%">Importe</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -104,33 +104,18 @@
                                 </td>
                             </tr>
                         </t>
+                        <br/>
                         <tr>
                             <th scope="col"><div>Art:
                                 <t t-esc="total_art"/></div>
                             </th>
                             <th scope="col"/>
-                            <th scope="col"><div>Total:
-                                <span t-esc="env.pos.format_currency(receipt.total_with_tax)"/></div>
-                            </th>
+                            <th scope="col"/>
+
                         </tr>
                     </tbody>
                 </table>
 
-                <!-- Subtotal -->
-
-                <t t-if="!isTaxIncluded">
-                    <div class="pos-receipt-right-align">--------</div>
-                    <br/>
-                    <div>Subtotal<span t-esc="env.pos.format_currency(receipt.subtotal)"
-                                       class="pos-receipt-right-align"/></div>
-                    <t t-foreach="receipt.tax_details" t-as="tax" t-key="tax.name">
-                        <div class="responsive-price">
-                            <t t-esc="tax.name"/>
-                            <span t-esc='env.pos.format_currency_no_symbol(tax.amount)'
-                                  class="pos-receipt-right-align"/>
-                        </div>
-                    </t>
-                </t>
 
                 <!-- Total -->
                 <div class="pos-receipt-right-align">--------</div>

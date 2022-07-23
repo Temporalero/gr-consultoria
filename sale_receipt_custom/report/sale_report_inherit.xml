@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="credo_report_saleorder_inheri_document_template"
+              inherit_id="partner_delivery_routes.credo_report_saleorder_document">
+
+        <xpath expr="//div[@name='page']/div[2]/t[@t-if='doc.company_id.vat']" position="after">
+            <t t-if="doc.company_id.website">
+                <br/>
+                <span t-esc="doc.company_id.website"/>
+            </t>
+            <t t-if="doc.company_id.email">
+                <br/>
+                <span t-esc="doc.company_id.email"/>
+            </t>
+
+        </xpath>
+
+
+    </template>
+
+
+</odoo>

@@ -36,8 +36,8 @@ class PosOrderTextAmount(models.Model):
         values.setdefault('pricelist_id', session.config_id.pricelist_id.id)
         values.setdefault('fiscal_position_id', session.config_id.default_fiscal_position_id.id)
         values.setdefault('company_id', session.config_id.company_id.id)
-        _log.info("Curency text %s",self.get_currency_to_text(values['amount_total']))
-        values.setdefault('currency_text', self.get_currency_to_text(values['amount_total']))
+        _log.info("Curency text %s",self.get_currency_to_text(values))
+        values.setdefault('currency_text', self.get_currency_to_text(values))
         return values
 
 
@@ -45,11 +45,12 @@ class PosOrderTextAmount(models.Model):
     @api.onchange('amount_total')
     def get_currency_to_text(self, vals):
         _log.info("Valores %s", vals)
-        _log.info(vals)
+        _log.info(vals['company_id'])
+        _log.info(vals['amount_total'])
 
-        company = self.env['res.company'].search([('id', '=', vals)])
+        company = self.env['res.company'].search([('id', '=', vals['company_id'])])
         _log.info("company %s, currency",company,company.currency_id)
-        text = company.currency_id.amount_to_text(vals)
+        text = company.currency_id.amount_to_text(vals['amount_total'])
         _log.info("Val text %s",text)
         return text
 

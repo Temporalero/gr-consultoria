@@ -22,9 +22,9 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     var round_pr = utils.round_precision;
     var exports = {};
 
-    var models = exports.PosModel.prototype.models;
+    var modelos = exports.PosModel.prototype.models;
 
-    models.find(e => e.model == "res.company").fields.push('street_name','street_number','street2','l10n_mx_edi_colony','l10n_mx_edi_colony_code','city','state_id','zip');
+    modelos.find(e => e.model == "res.company").fields.push('street_name','street_number','street2','l10n_mx_edi_colony','l10n_mx_edi_colony_code','city','state_id','zip');
 
 
     models.PosModel = models.PosModel.extend({

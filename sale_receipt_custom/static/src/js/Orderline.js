@@ -21,7 +21,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     var round_di = utils.round_decimals;
     var round_pr = utils.round_precision;
     var exports = {};
-    
+
 
     models.PosModel = models.PosModel.extend({
 
@@ -33,7 +33,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             for (let value of self.models) {
               if(value.model == 'res.company'){
               console.log("AGREGAMOS CAMPOS EN COMPANY")
-                value.fields = [ 'currency_id', 'email', 'website', 'company_registry', 'vat', 'name', 'phone', 'partner_id' , 'country_id', 'state_id', 'tax_calculation_rounding_method','street_name','street_number','street2','l10n','l10n_mx_edi_colony','l10n_mx_edi_colony_code','city','state_id','zip']
+                value.fields = [ 'currency_id', 'email', 'website', 'company_registry', 'vat', 'name', 'phone', 'partner_id' , 'country_id', 'state_id', 'tax_calculation_rounding_method','street_name','street_number','street2','l10n_mx_edi_colony','l10n_mx_edi_colony_code','city','state_id','zip']
               }
 
             }

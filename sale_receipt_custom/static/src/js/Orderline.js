@@ -175,6 +175,10 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             }//
 
             var cent = Math.trunc((amount%1)*100);
+            console.log("cantidad recibida")
+            console.log(amount)
+            console.log('Centavos')
+            console.log(cent)
             var num_entero = Math.trunc(amount);
             console.log(num_entero);
 
@@ -292,7 +296,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             } else {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
-            
+
 
             return receipt;
         },

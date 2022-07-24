@@ -49,7 +49,7 @@ class PosOrderTextAmount(models.Model):
 
         company = self.env['res.company'].search([('id', '=', vals)])
         _log.info("company %s, currency",company,company.currency_id)
-        text = company.currency_id.amount_to_text(vals['amount'])
+        text = company.currency_id.amount_to_text(vals)
         _log.info("Val text %s",text)
         return text
 

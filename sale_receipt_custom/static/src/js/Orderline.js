@@ -26,21 +26,25 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     });
      models.Order = models.Order.extend({
 
-        get_currency_text:  async function(amount) {
+        get_currency_text: function(amount) {
             console.log("##Order##");
             console.log(amount);
-            const linkresultPromises = [];
+
             const params = {
                 model: 'sale.order',
                 method:'get_currency_to_text',
                 args: [{'amount':amount}],
             };
 
-            const promise = await rpc.query(params);
-            linkresultPromises.push(promise);
-            console.log("linkresultPromises")
-            console.log(linkresultPromises)
-            return linkresultPromises;
+            return new Promise(function (resolve, reject) {
+                rpc.query(params)
+                .then(function (text_amount) {
+                    resolve(text_amount);
+                }, function () { //failed to read weight
+                    resolve("Algo salio mal");
+                });
+            });
+
         },
 
         export_for_printing: function(){
@@ -146,8 +150,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
             
-            receipt.text_amount = Promise.all([this.get_currency_text(this.get_total_with_tax())]);
-
+            receipt.text_amount = this.get_currency_text(this.get_total_with_tax());
 
 
             return receipt;

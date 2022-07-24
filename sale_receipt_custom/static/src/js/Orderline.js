@@ -134,14 +134,9 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 args: [{'amount':this.get_total_with_tax()}],
             };
 
-            
 
-            return receipt.amount_text = rpc.query(params).then(function (result) {
-                    console.log("TEXT AMOUNT")
-                    console.log(result)
-                    return result
 
-                });;
+            return receipt;
         },
     });
 

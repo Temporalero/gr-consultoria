@@ -69,6 +69,9 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             var company = this.pos.company;
             var date    = new Date();
 
+            console.log('Company')
+            console.log(company)
+
             function is_html(subreceipt){
                 return subreceipt ? (subreceipt.split('\n')[0].indexOf('<!DOCTYPE QWEB') >= 0) : false;
             }

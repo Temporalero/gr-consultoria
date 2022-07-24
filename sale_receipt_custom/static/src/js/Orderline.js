@@ -25,20 +25,26 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
         },
     });
      models.Order = models.Order.extend({
+
         get_currency_text:  async function(amount) {
             console.log("##Order##");
             console.log(amount);
+            const linkresultPromises = [];
             const params = {
                 model: 'sale.order',
                 method:'get_currency_to_text',
                 args: [{'amount':amount}],
             };
 
-            return await rpc.query(params);
+            const promise = rpc.query(params).then( value => {
+                console.log(value) //log the returned value
+                return value; // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
+              });
+            linkresultPromises.push(promise);
 
-
-
+            return Promise.all(linkresultPromises);
         },
+        
         export_for_printing: function(){
             console.log("REDER TICKET")
             var orderlines = [];

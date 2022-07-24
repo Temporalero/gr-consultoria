@@ -5,25 +5,6 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     var rpc = require('web.rpc');
     var exports = {};
 
-    models.PosModel = models.PosModel.extend({
-
-        get_currency_text:  function(amount) {
-            console.log("##Order##");
-            const params = {
-                model: 'sale.order',
-                method:'get_currency_to_text',
-                args: [{'amount':amount}],
-            };
-
-            return this.rpc(params).then( value => {
-                console.log(value) //log the returned value
-                return value; // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
-              });
-
-
-
-        },
-    });
      models.Order = models.Order.extend({
 
         export_for_printing: async function(){
@@ -74,7 +55,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 args: [{'amount':this.get_total_with_tax()}],
             };
             rpc = this.get('rpc')
-            total_in_text =  await rpc(params);
+            total_in_text =  await new rpc(params);
             console.log("Total en text")
             console.log(total_in_text)
             console.log("FIN TEXT")

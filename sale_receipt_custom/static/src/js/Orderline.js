@@ -36,15 +36,11 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 args: [{'amount':amount}],
             };
 
-            const promise = rpc.query(params).then( value => {
-                console.log(value) //log the returned value
-                return value; // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
-              });
-            linkresultPromises.push(promise);
+            const promise = await rpc.query(params);
 
-            return Promise.all(linkresultPromises);
+            return promise
         },
-        
+
         export_for_printing: function(){
             console.log("REDER TICKET")
             var orderlines = [];

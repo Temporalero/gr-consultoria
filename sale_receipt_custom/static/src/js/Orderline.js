@@ -3,8 +3,25 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
 
     const models = require('point_of_sale.models');
     var rpc = require('web.rpc')
-    var exports = {};
+    var BarcodeParser = require('barcodes.BarcodeParser');
+    var BarcodeReader = require('point_of_sale.BarcodeReader');
+    var PosDB = require('point_of_sale.DB');
+    var devices = require('point_of_sale.devices');
+    var concurrency = require('web.concurrency');
+    var config = require('web.config');
+    var core = require('web.core');
+    var field_utils = require('web.field_utils');
+    var time = require('web.time');
+    var utils = require('web.utils');
+    var { Gui } = require('point_of_sale.Gui');
+
+    var QWeb = core.qweb;
     var _t = core._t;
+    var Mutex = concurrency.Mutex;
+    var round_di = utils.round_decimals;
+    var round_pr = utils.round_precision;
+    var exports = {};
+    
 
     models.PosModel = models.PosModel.extend({
 

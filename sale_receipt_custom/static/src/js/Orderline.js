@@ -40,7 +40,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             return rpc.query(params)
                 .then(function (backend_result) {
                     console.log(backend_result)
-                    return Promise.resolve();
+                    return Promise.resolve(backend_result);
                 });
 
         },

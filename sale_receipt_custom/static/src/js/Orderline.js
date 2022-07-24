@@ -7,7 +7,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
 
     models.PosModel = models.PosModel.extend({
 
-        get_currency_text:  function(amount) {
+        get_currency_text: async function(amount) {
             console.log("##Order##");
             const params = {
                 model: 'sale.order',
@@ -17,7 +17,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
 
             return this.rpc(params).then( value => {
                 console.log(value) //log the returned value
-                return Promise.all([value]); // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
+                return value // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
               });
 
 

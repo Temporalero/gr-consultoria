@@ -50,7 +50,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
         },
 
         export_for_printing: function(){
-            console.log("REDER TICKET")
+            console.log("REDER TICKET,selected order line")
+            console.log(this.get_selected_orderline())
             var orderlines = [];
             var self = this;
 

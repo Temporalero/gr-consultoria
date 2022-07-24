@@ -2,12 +2,30 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     "use strict";
 
     const models = require('point_of_sale.models');
-    var rpc = require('web.rpc');
     var exports = {};
 
+    models.PosModel = models.PosModel.extend({
+
+        get_currency_text:  function(amount) {
+            console.log("##Order##");
+            const params = {
+                model: 'sale.order',
+                method:'get_currency_to_text',
+                args: [{'amount':amount}],
+            };
+
+            return this.rpc(params).then( value => {
+                console.log(value) //log the returned value
+                return value; // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
+              });
+
+
+
+        },
+    });
      models.Order = models.Order.extend({
 
-        export_for_printing: async function(){
+        export_for_printing: function(){
             console.log("REDER TICKET")
             var orderlines = [];
             var self = this;
@@ -48,8 +66,6 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                     return qweb.render('subreceipt',{'pos':self.pos,'order':self, 'receipt': receipt}) ;
                 }
             }
-
-
 
             var receipt = {
                 orderlines: orderlines,

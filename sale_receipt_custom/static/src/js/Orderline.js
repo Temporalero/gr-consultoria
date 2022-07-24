@@ -4,6 +4,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     const models = require('point_of_sale.models');
     var rpc = require('web.rpc')
     var exports = {};
+    var _t = core._t;
 
     models.PosModel = models.PosModel.extend({
 

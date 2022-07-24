@@ -15,12 +15,13 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 args: [{'amount':amount}],
             };
 
-            return this.rpc(params).then( value => {
-                console.log(value) //log the returned value
-                return value // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
-              });
-
-
+            const valor = await this.rpc(params);
+            console.log(valor);
+            console.log("Waited 0s");
+            await delay(5000);
+            console.log("Waited 5s");
+            console.log(valor);
+            return valor
 
         },
     });

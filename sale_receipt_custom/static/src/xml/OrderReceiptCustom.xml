@@ -133,12 +133,12 @@
                   </div>
                 </t>
                 <br/>
-                <br/>
+
 
                 <!--<div>***(<t t-esc="receipt.text_amount"/>)*** </div> -->
                 <div>***(<t t-esc="env.pos.amount_to_letter(receipt.total_with_tax)"/>)*** </div>
                 <!-- Payment Lines -->
-
+                <br/>
                 <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
                     <div>
                         <t t-esc="line.name"/>

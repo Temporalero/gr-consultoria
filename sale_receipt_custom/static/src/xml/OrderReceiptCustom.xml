@@ -24,12 +24,14 @@
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
                     <t t-if="receipt.company">
+                        <div>
                         <t t-esc="receipt.company.street_name"/>
-                        <t t-esc="receipt.company.street_number"/>
+                            <t t-esc="receipt.company.street_number"/></div>
                         <br/>
+                        <div>
                         <t t-esc="receipt.company.city"/>
-                        <t t-esc="receipt.company.state_id"/>
-                        <t t-esc="receipt.company.zip"/>
+                            <t t-esc="receipt.company.state_id"/>
+                            <t t-esc="receipt.company.zip"/></div>
                         <br/>
                     </t>
 
@@ -227,7 +229,9 @@
                      style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif; max-width: 100%; padding: 2px;">
                                 <br/>
                     Por este pagaré, debo y me comprometo incondicionalmente pagar la orden de Distribuciones
-                    CREDO y/o <div><t t-esc="receipt.company.name"/></div>, la cantidad estipulada en este documento en un plazo máximo de 7 días
+                    CREDO y/o
+                    <div><t t-esc="receipt.company.name"/></div>
+                    , la cantidad estipulada en este documento en un plazo máximo de 7 días
                     contados
                     a partir de la fecha impresa en el porte, el imcumplimiento generara un 3% mensual.
                     <br/>

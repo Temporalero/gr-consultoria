@@ -174,11 +174,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                     return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
             }//
 
-            var cent = Math.trunc((amount%1)*100);
-            console.log("cantidad recibida")
-            console.log(amount)
-            console.log('Centavos')
-            console.log(cent)
+            var cent = (amount+"").split('.')[1].substring(0,2)
+
             var num_entero = Math.trunc(amount);
             console.log(num_entero);
 
@@ -213,8 +210,6 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             var company = this.pos.company;
             var date    = new Date();
 
-            console.log('Company')
-            console.log(company)
 
             function is_html(subreceipt){
                 return subreceipt ? (subreceipt.split('\n')[0].indexOf('<!DOCTYPE QWEB') >= 0) : false;

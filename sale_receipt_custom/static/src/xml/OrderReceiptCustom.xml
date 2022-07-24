@@ -137,7 +137,7 @@
                 <br/>
                 <br/>
 
-                <div>***(<t t-esc="receipt.total_with_tax_text"/>)*** </div>
+                <div>***(<t t-esc="receipt.text_amount"/>)*** </div>
                 <!-- Payment Lines -->
 
                 <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">

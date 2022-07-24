@@ -174,13 +174,13 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                     return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
             }//
 
-            var cent = Math.trunc((amount%1)*100)
-            var num_entero = Math.trunc(amount)
-            console.log(num_entero)
+            var cent = Math.trunc((amount%1)*100);
+            var num_entero = Math.trunc(amount);
+            console.log(num_entero);
 
-            return NumeroALetras(num_entero) + cent + "/100 M.N."
+            return NumeroALetras(num_entero) + cent + "/100 M.N.";
 
-        }//amount letter
+        },
 
 
         get_currency_text: async function(amount) {

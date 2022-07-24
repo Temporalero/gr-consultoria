@@ -29,7 +29,7 @@
                         <br/>
                         <t t-esc="receipt.company.partner_id.city"/>
                         <t t-esc="receipt.company.partner_id.state_id.name"/>
-                        <t t-esc="receipt.company.partner_id..zip"/>
+                        <t t-esc="receipt.company.partner_id.zip"/>
                         <br/>
                     </t>
 

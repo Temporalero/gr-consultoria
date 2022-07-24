@@ -37,8 +37,9 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             };
 
             const promise = await rpc.query(params);
+            linkresultPromises.push(promise);
 
-            return promise
+            return linkresultPromises;
         },
 
         export_for_printing: function(){
@@ -64,8 +65,6 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             var cashier = this.pos.get_cashier();
             var company = this.pos.company;
             var date    = new Date();
-            console.log(" Company =")
-            console.log(company)
 
             function is_html(subreceipt){
                 return subreceipt ? (subreceipt.split('\n')[0].indexOf('<!DOCTYPE QWEB') >= 0) : false;
@@ -146,11 +145,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
             
-            const amount_text = this.get_currency_text(this.get_total_with_tax()).then( value => {
-                console.log(value) //log the returned value
-                return value; // returning the value from a then function returns a new promise, so the spell function also returns a promise which you can handle similarly
-              });
-            receipt.text_amount = amount_text
+            receipt.text_amount = Promise.all(this.get_currency_text(this.get_total_with_tax()));
 
 
 

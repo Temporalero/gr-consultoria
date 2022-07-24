@@ -29,6 +29,8 @@ class PosOrderTextAmount(models.Model):
     @api.model
     def _complete_values_from_session(self, session, values):
         _log.info("Completando desde complete values")
+        _log.info(values)
+        _log.info('Session %s',session)
         if values.get('state') and values['state'] == 'paid':
             values['name'] = self._compute_order_name()
         values.setdefault('pricelist_id', session.config_id.pricelist_id.id)

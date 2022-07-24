@@ -38,7 +38,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
 
             const promise = await rpc.query(params);
             linkresultPromises.push(promise);
-
+            console.log("linkresultPromises")
+            console.log(linkresultPromises)
             return linkresultPromises;
         },
 
@@ -145,7 +146,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
             
-            receipt.text_amount = Promise.all(this.get_currency_text(this.get_total_with_tax()));
+            receipt.text_amount = Promise.all([this.get_currency_text(this.get_total_with_tax())]);
 
 
 

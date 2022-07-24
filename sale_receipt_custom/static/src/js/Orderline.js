@@ -3,12 +3,12 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
 
     const models = require('point_of_sale.models');
     var rpc = require('web.rpc')
-    
+
     const exports = require("point_of_sale.models");
 
     var modelos = exports.PosModel.prototype.models;
 
-    modelos.find(e => e.model == "res.company").fields.push('street_name','street_number','street2','l10n_mx_edi_colony','l10n_mx_edi_colony_code','city','state_id','zip');
+    modelos.find(e => e.model == "res.company").fields.push('street_name','street_number','street2','city','state_id','zip');
 
 
     models.PosModel = models.PosModel.extend({

@@ -28,7 +28,7 @@
                         <t t-esc="receipt.company.street_number"/>
                         <br/>
                         <t t-esc="receipt.company.city"/>
-                        <t t-esc="receipt.company.state_id[1]"/>
+                        <t t-esc="receipt.company.state_id"/>
                         <t t-esc="receipt.company.zip"/>
                         <br/>
                     </t>

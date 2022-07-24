@@ -150,7 +150,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
             
-            receipt.text_amount = this.get_currency_text(this.get_total_with_tax());
+            receipt.text_amount = this.get_currency_text(this.get_total_with_tax()).resolve();
 
 
             return receipt;

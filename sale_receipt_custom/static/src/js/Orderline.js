@@ -54,8 +54,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 method:'get_currency_to_text',
                 args: [{'amount':this.get_total_with_tax()}],
             };
-            rpc = this.get('rpc')
-            total_in_text =  await new rpc(params);
+
+            total_in_text =  rpc.query(params);
             console.log("Total en text")
             console.log(total_in_text)
             console.log("FIN TEXT")

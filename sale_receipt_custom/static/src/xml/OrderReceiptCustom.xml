@@ -24,8 +24,8 @@
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
 
-                    <div><t t-esc="receipt.company.street_name"/></div>
-                    <div> <t t-esc="receipt.company.street_number"/></div>
+                    <div><t t-esc="receipt.company.street_name"/>
+                         <t t-esc="receipt.company.street_number"/></div>
                     <br/>
                     <div>
                         <t t-esc="receipt.company.city"/>

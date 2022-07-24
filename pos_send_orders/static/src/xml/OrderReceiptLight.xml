@@ -36,41 +36,47 @@
                 </h2>
                 <br/>
             </t>
-            <div class="pos-receipt-contact">
-                <t t-if="receipt.company.contact_address">
-                    <div><t t-esc="receipt.company.contact_address" /></div>
-                </t>
-                <t t-if="receipt.company.phone">
-                    <div>Tel:<t t-esc="receipt.company.phone" /></div>
-                </t>
-                <t t-if="receipt.company.vat">
-                    <div><t t-esc="receipt.company.vat_label"/>:<t t-esc="receipt.company.vat" /></div>
-                </t>
-                <t t-if="receipt.company.email">
-                    <div><t t-esc="receipt.company.email" /></div>
-                </t>
-                <t t-if="receipt.company.website">
-                    <div><t t-esc="receipt.company.website" /></div>
-                </t>
-                <t t-if="receipt.header_html">
-                    <t t-raw="receipt.header_html" />
-                </t>
-                <t t-if="!receipt.header_html and receipt.header">
-                    <div><t t-esc="receipt.header" /></div>
-                </t>
-                <t t-if="receipt.cashier">
-                    <div class="cashier">
-                        <div>--------------------------------</div>
-                        <div>Served by <t t-esc="receipt.cashier" /></div>
-                    </div>
-                </t>
-                <div class="cashier" t-if="cliente">
-                    <div>Para <t t-esc="cliente.name"/></div>
+             <div class="pos-receipt-contact">
+                    <t t-if="receipt.company.name">
+                        <div><t t-esc="receipt.company.name"/></div>
+                    </t>
+                    <t t-if="receipt.company.vat">
+                        <div><t t-esc="receipt.company.vat_label"/>:
+                            <t t-esc="receipt.company.vat"/></div>
+                    </t>
+                    <t t-if="receipt.company.street">
+                        <div><t t-esc="receipt.company.street"/></div>
+                    </t>
+
+                    <t t-if="receipt.company.city_state">
+                        <div><t t-esc="receipt.company.city_state"/></div>
+                    </t>
+
+                    <t t-if="receipt.company.email">
+                        <div><t t-esc="receipt.company.email" /></div>
+                    </t>
+                    <t t-if="receipt.company.website">
+                        <div><t t-esc="receipt.company.website" /></div>
+                    </t>
+
+                    <t t-if="receipt.company.phone">
+                        <div>TEL:<t t-esc="receipt.company.phone"/></div>
+                    </t>
+
+
+                    <t t-if="receipt.header_html">
+                        <t t-raw="receipt.header_html"/>
+                    </t>
+                    <t t-if="!receipt.header_html and receipt.header">
+                        <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
+                    </t>
+                    <t t-if="receipt.cashier">
+                        <div class="cashier">
+                            <div>--------------------------------</div>
+                            <div>Served by <t t-esc="receipt.cashier"/></div>
+                        </div>
+                    </t>
                 </div>
-                <div class="cashier">
-                    <h3>ORDEN DE SURTIDO</h3>
-                </div>
-            </div>
             <br />
 
             <!-- Orderlines -->

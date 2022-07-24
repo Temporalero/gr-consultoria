@@ -137,11 +137,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                     name: company.name,
                     phone: company.phone,
                     logo:  this.pos.company_logo_base64,
-                    city: company.city,
-                    state_id: company.state_id[1],
-                    zip: company.zip,
-                    street_name: company.street_name,
-                    street_number:company.street_number,
+                    city_state: '${company.city}, ${company.state_id[1]} CP ${company.zip}',
+                    street: '${company.street_name} ${company.street_number}',
                 },
                 currency: this.pos.currency,
             };

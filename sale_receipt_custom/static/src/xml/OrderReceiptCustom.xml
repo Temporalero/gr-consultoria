@@ -23,15 +23,11 @@
                         <div><t t-esc="receipt.company.vat_label"/>:
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
+                    
+                    <div><t t-esc="receipt.company.street"/></div>
 
-                    <div><t t-esc="receipt.company.street_name"/>
-                         <t t-esc="receipt.company.street_number"/></div>
-                    <br/>
-                    <div>
-                        <t t-esc="receipt.company.city"/>
-                        <t t-esc="receipt.company.state_id"/>
-                        <t t-esc="receipt.company.zip"/></div>
-                    <br/>
+                    <div><t t-esc="receipt.company.city_state"/>></div>
+
 
 
                     <t t-if="receipt.company.email">

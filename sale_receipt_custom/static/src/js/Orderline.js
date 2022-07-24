@@ -49,23 +49,13 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 }
             }
 
-            const params = {
-                model: 'sale.order',
-                method:'get_currency_to_text',
-                args: [{'amount':this.get_total_with_tax()}],
-            };
 
-            var total_in_text = await rpc.query(params);
-            console.log("Total en text")
-            console.log(total_in_text)
-            console.log("FIN TEXT")
 
             var receipt = {
                 orderlines: orderlines,
                 paymentlines: paymentlines,
                 subtotal: this.get_subtotal(),
                 total_with_tax: this.get_total_with_tax(),
-                total_with_tax_text: total_in_text,
                 total_rounded: this.get_total_with_tax() + this.get_rounding_applied(),
                 total_without_tax: this.get_total_without_tax(),
                 total_tax: this.get_total_tax(),

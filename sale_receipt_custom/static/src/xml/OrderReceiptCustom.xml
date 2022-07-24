@@ -15,7 +15,7 @@
                     </h2>
                     <br/>
                 </t>
-                <div class="pos-receipt-contact">'
+                <div class="pos-receipt-contact">
                     <t t-if="receipt.company.name">
                         <div><t t-esc="receipt.company.name"/></div>
                     </t>
@@ -23,17 +23,17 @@
                         <div><t t-esc="receipt.company.vat_label"/>:
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
-                    <t t-if="receipt.company">
-                        <div>
+
+                    <div>
                         <t t-esc="receipt.company.street_name"/>
-                            <t t-esc="receipt.company.street_number"/></div>
-                        <br/>
-                        <div>
+                        <t t-esc="receipt.company.street_number"/></div>
+                    <br/>
+                    <div>
                         <t t-esc="receipt.company.city"/>
-                            <t t-esc="receipt.company.state_id"/>
-                            <t t-esc="receipt.company.zip"/></div>
-                        <br/>
-                    </t>
+                        <t t-esc="receipt.company.state_id"/>
+                        <t t-esc="receipt.company.zip"/></div>
+                    <br/>
+
 
                     <t t-if="receipt.company.email">
                         <div><t t-esc="receipt.company.email" /></div>

@@ -141,8 +141,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             } else {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
+            setTimeout(async () => await receipt.text_amount = this.get_currency_text(this.get_total_with_tax()), 10);
 
-            receipt.text_amount = this.get_currency_text(this.get_total_with_tax());
 
 
 

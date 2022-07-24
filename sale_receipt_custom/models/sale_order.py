@@ -72,7 +72,7 @@ class PosOrderTextAmount(models.Model):
             'pricelist_id': ui_order['pricelist_id'],
             'amount_paid': ui_order['amount_paid'],
             'amount_total': ui_order['amount_total'],
-            'amount_text': company.currency_id.amount_to_text(ui_order['amount_total']),
+            'currency_text': company.currency_id.amount_to_text(ui_order['amount_total']),
             'amount_tax': ui_order['amount_tax'],
             'amount_return': ui_order['amount_return'],
             'company_id': self.env['pos.session'].browse(ui_order['pos_session_id']).company_id.id,

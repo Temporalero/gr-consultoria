@@ -23,10 +23,10 @@
                         <div><t t-esc="receipt.company.vat_label"/>:
                             <t t-esc="receipt.company.vat"/></div>
                     </t>
-                    
+
                     <div><t t-esc="receipt.company.street"/></div>
 
-                    <div><t t-esc="receipt.company.city_state"/>></div>
+                    <div><t t-esc="receipt.company.city_state"/></div>
 
 
 

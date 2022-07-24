@@ -2,6 +2,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
     "use strict";
 
     const models = require('point_of_sale.models');
+    var rpc = require('web.rpc')
     var exports = {};
 
     models.PosModel = models.PosModel.extend({
@@ -127,8 +128,20 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             } else {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
+            const params = {
+                model: 'sale.order',
+                method:'get_currency_to_text',
+                args: [{'amount':this.get_total_with_tax()}],
+            };
 
-            return receipt;
+            
+
+            return receipt.amount_text = rpc.query(params).then(function (result) {
+                    console.log("TEXT AMOUNT")
+                    console.log(result)
+                    return result
+
+                });;
         },
     });
 

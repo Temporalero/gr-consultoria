@@ -36,14 +36,12 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                 args: [{'amount':amount}],
             };
 
-            return new Promise(function (resolve, reject) {
-                rpc.query(params)
-                .then(function (text_amount) {
-                    resolve(text_amount);
-                }, function () { //failed to read weight
-                    resolve("Algo salio mal");
+
+            return rpc.query(params)
+                .then(function (backend_result) {
+                    console.log(backend_result)
+                    return Promise.resolve();
                 });
-            });
 
         },
 

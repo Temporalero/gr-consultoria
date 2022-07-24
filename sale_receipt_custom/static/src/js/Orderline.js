@@ -25,7 +25,20 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
         },
     });
      models.Order = models.Order.extend({
+        get_currency_text:  async function(amount) {
+            console.log("##Order##");
+            console.log(amount);
+            const params = {
+                model: 'sale.order',
+                method:'get_currency_to_text',
+                args: [{'amount':amount}],
+            };
 
+            return await rpc.query(params);
+
+
+
+        },
         export_for_printing: function(){
             console.log("REDER TICKET")
             var orderlines = [];
@@ -128,11 +141,8 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             } else {
                 receipt.footer = this.pos.config.receipt_footer || '';
             }
-            const params = {
-                model: 'sale.order',
-                method:'get_currency_to_text',
-                args: [{'amount':this.get_total_with_tax()}],
-            };
+
+            receipt.text_amount = this.get_currency_text(this.get_total_with_tax());
 
 
 

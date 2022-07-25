@@ -15,7 +15,7 @@
                     </h2>
                     <br/>
                 </t>
-                <div class="pos-receipt-contact">
+                <div class="pos-receipt-contact" style="font-size: 14px;">
                     <t t-if="receipt.company.name">
                         <div><t t-esc="receipt.company.name"/></div>
                     </t>
@@ -213,7 +213,7 @@
                 </div>
                 \<!-- Leyenda de al final-->
 
-                <div style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif;text-align: center; max-width: 100%;">
+                <div style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif;text-align: center; max-width: 100%;font-size: 14px">
                     <br/>
                     <br/>
                     <span>Pago en una sola exhibición</span>
@@ -222,7 +222,7 @@
                     <br/>
                 </div>
                 <div class="pos-center-aling"
-                     style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif; max-width: 100%; padding: 2px;">
+                     style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif; max-width: 100%; padding: 2px;font-size: 14px">
                                 <br/>
                     Por este pagaré, debo y me comprometo incondicionalmente pagar la orden de Distribuciones
                     CREDO y/o

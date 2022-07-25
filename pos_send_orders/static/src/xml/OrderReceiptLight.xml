@@ -36,7 +36,7 @@
                 </h2>
                 <br/>
             </t>
-             <div class="pos-receipt-contact">
+             <div class="pos-receipt-contact" style="font-size: 14px;">
                     <t t-if="receipt.company.name">
                         <div><t t-esc="receipt.company.name"/></div>
                     </t>

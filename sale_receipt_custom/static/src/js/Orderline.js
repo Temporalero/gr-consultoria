@@ -174,7 +174,19 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
                     return Millones(data.enteros) + " " + data.letrasMonedaPlural + " " + data.letrasCentavos;
             }//
 
-            var cent = (amount+"").split('.')[1].substring(0,2)
+            var split = (amount+"").split('.');
+            var cent = 0;
+
+            if(split.length === 2 ){
+              console.log(split)
+              if (split[1].length === 1){
+                 cent = split[1] + "0";
+              }
+              else if(split[1].length === 2){
+                cent = split[1].substring(0,2);
+              }
+
+            }
 
             var num_entero = Math.trunc(amount);
             console.log(num_entero);

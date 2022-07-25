@@ -178,7 +178,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             var cent = 0;
 
             if(split.length === 2 ){
-              console.log(split)
+
               if (split[1].length === 1){
                  cent = split[1] + "0";
               }
@@ -189,7 +189,7 @@ odoo.define('sale_receipt_custom.Orderline', function (require) {
             }
 
             var num_entero = Math.trunc(amount);
-            console.log(num_entero);
+
 
             return NumeroALetras(num_entero) + cent + "/100 M.N.";
 

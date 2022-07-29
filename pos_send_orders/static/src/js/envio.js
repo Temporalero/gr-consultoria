@@ -84,8 +84,8 @@ odoo.define("pos_send_orders.SendOrder", function (require) {
                 });
                 return;
             }*/
-//            console.log("UBICACION QUE SEGUN ESTÁ MAL.. ");
-//            console.log(this.env.pos.config);
+            console.log("UBICACION QUE SEGUN ESTÁ MAL.. ");
+            console.log(this.env.pos.config);
             var sessions = await this.rpc({
                 model: 'pos.session',
                 method: 'search_read',
@@ -99,8 +99,8 @@ odoo.define("pos_send_orders.SendOrder", function (require) {
             const {confirmed, payload: payload} = await this.showPopup("Buttonsend", {'sessions':sessions});
             if(confirmed){
                 let order = this.env.pos.db.get_unpaid_orders().find(e=> e.name == payload.order);
-//                console.log("Payload");
-//                console.log(payload);
+                console.log("Payload");
+                console.log(payload);
                 if(!payload.value){
                     this.showPopup("ErrorPopup",{
                                     title: "Envio Fallido",
@@ -124,10 +124,10 @@ odoo.define("pos_send_orders.SendOrder", function (require) {
                                 //nueva orden
                                 let new_order = this.env.pos.add_new_order();
                                 this.env.pos.set_order(new_order);
-//                                console.log("PAYLOAD.. send btn");
-//                                console.log(payload);
+                                console.log("PAYLOAD.. send btn");
+                                console.log(payload);
                                 if(payload.print){
-//                                    console.log("Opening print window");
+                                    console.log("Opening print window");
                                     this.showScreen("PrintEnvScreen", { order: order});
                                 }
                                 else{

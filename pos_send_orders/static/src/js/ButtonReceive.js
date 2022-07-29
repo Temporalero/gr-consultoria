@@ -8,7 +8,7 @@ odoo.define('pos_send_orders.ButtonReceive', function (require) {
     class ButtonReceive extends AbstractAwaitablePopup {
         constructor() {
             super(...arguments);
-//            console.log("EN EL CONSTRUCTOR.. ")
+            console.log("EN EL CONSTRUCTOR.. ")
             this.state = useState({ inputValue: '',name: '', pagado: false});
             this.inputRef = useRef('session');
         }
@@ -19,8 +19,8 @@ odoo.define('pos_send_orders.ButtonReceive', function (require) {
         }
         exist_order(name){
             let orders = SaleOrderFetcher.get();
-//            console.log(" ORDENES FETCH.. ");
-//            console.log(orders);
+            console.log(" ORDENES FETCH.. ");
+            console.log(orders);
             let new_order = false;
             orders.forEach(o => {
                 if(name === o.name){
@@ -32,8 +32,8 @@ odoo.define('pos_send_orders.ButtonReceive', function (require) {
         async GetOrder() {
             if(this.state.pagado==='1'){
                 let name = this.state.name;
-//                console.log(" get order name :: ");
-//                console.log(name);
+                console.log(" get order name :: ");
+                console.log(name);
                 this.showScreen('OrderManagementScreen');
                 setTimeout(() => {
                     let order = this.exist_order(name);
@@ -63,7 +63,7 @@ odoo.define('pos_send_orders.ButtonReceive', function (require) {
         }
 
         name_filter(event){
-//            console.log("Filtrando... xD ");
+            console.log("Filtrando... xD ");
             var search_input = document.getElementById("search_order_input");
             var filter = search_input.value.toUpperCase();
             var orders_table = document.getElementById("received_orders_table");

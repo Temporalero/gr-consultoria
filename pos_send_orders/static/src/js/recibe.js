@@ -41,7 +41,7 @@ odoo.define("pos_send_orders.ResOrder", function (require) {
             async function loop() {
                 if (self.env && self.env.pos && self.env.pos.pos_session) {
                     if(!self.env.pos.config.es_caja){
-                        console.log("no es caja, no recibir");
+//                        console.log("no es caja, no recibir");
                         return
                     }
                     try {
@@ -72,7 +72,7 @@ odoo.define("pos_send_orders.ResOrder", function (require) {
             return orders
         }
         async SeeOrders(){
-            console.log("Viendo ordenes a recibir")
+//            console.log("Viendo ordenes a recibir")
             return await this.rpc({
                 model: 'pos.session',
                 method: 'ver',
@@ -80,11 +80,11 @@ odoo.define("pos_send_orders.ResOrder", function (require) {
             });
         }
         async onClick(event) {
-            console.log(" recibe click ... ")
+//            console.log(" recibe click ... ")
             let orders = await this.SeeOrders();
             // Filtrar aquí las que ya están pagadas si no se desean ver.
-            console.log(" Ordenes recibidas ::: ");
-            console.log(orders);
+//            console.log(" Ordenes recibidas ::: ");
+//            console.log(orders);
             await this.showPopup("ButtonReceive", {'orders':orders});
         }
 

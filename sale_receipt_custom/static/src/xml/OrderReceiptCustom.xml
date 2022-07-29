@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template id="template" xml:space="preserve">
+
+    <t t-name="OrderReceiptCustom" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+            <div class="pos-receipt">
+                <t t-if="receipt.company.logo">
+                    <img class="pos-receipt-logo" t-att-src="receipt.company.logo" alt="Logo"
+                         style="height: auto; width: 30%; align: center;"/>
+                    <br/>
+                </t>
+                <t t-if="!receipt.company.logo">
+                    <h2 class="pos-receipt-center-align">
+                        <t t-esc="receipt.company.name"/>
+                    </h2>
+                    <br/>
+                </t>
+                <div class="pos-receipt-contact" style="font-size: 14px;">
+                    <t t-if="receipt.company.name">
+                        <div><t t-esc="receipt.company.name"/></div>
+                    </t>
+                    <t t-if="receipt.company.vat">
+                        <div><t t-esc="receipt.company.vat_label"/>:
+                            <t t-esc="receipt.company.vat"/></div>
+                    </t>
+                    <t t-if="receipt.company.street">
+                        <div><t t-esc="receipt.company.street"/></div>
+                    </t>
+
+                    <t t-if="receipt.company.city_state">
+                        <div><t t-esc="receipt.company.city_state"/></div>
+                    </t>
+
+                    <t t-if="receipt.company.email">
+                        <div><t t-esc="receipt.company.email" /></div>
+                    </t>
+                    <t t-if="receipt.company.website">
+                        <div><t t-esc="receipt.company.website" /></div>
+                    </t>
+
+                    <t t-if="receipt.company.phone">
+                        <div>TEL:<t t-esc="receipt.company.phone"/></div>
+                    </t>
+
+
+                    <t t-if="receipt.header_html">
+                        <t t-raw="receipt.header_html"/>
+                    </t>
+                    <t t-if="!receipt.header_html and receipt.header">
+                        <div style="white-space:pre-line"><t t-esc="receipt.header" /></div>
+                    </t>
+                    <t t-if="receipt.cashier">
+                        <div class="cashier">
+                            <div>--------------------------------</div>
+                            <div>Served by <t t-esc="receipt.cashier"/></div>
+                        </div>
+                    </t>
+                </div>
+                <br/>
+
+
+                <!-- Orderlines -->
+
+                <table class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th scope="row" colspan="3">
+                                    <div>Descripcion</div>
+                             </th>
+                        </tr>
+                        <tr>
+                            <th scope="col" style="width:33%">Cantidad</th>
+                            <th scope="col" style="width:33%">Precio</th>
+                            <th scope="col" style="width:33%">Importe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="total_art" t-value="0"/>
+                        <t t-set="total_sum" t-value="0"/>
+
+                        <t t-foreach="receipt.orderlines" t-as="line">
+                            <t t-set="cantidad"
+                               t-value="Math.round(line.quantity * Math.pow(10, env.pos.dp['Product Unit of Measure'])) / Math.pow(10, env.pos.dp['Product Unit of Measure'])"/>
+                            <t t-set="total_art" t-value="total_art + cantidad"/>
+                            <br/>
+                            <tr>
+                                <th scope="row" colspan="3">
+                                    <div><t t-esc="line.product_name_wrapped[0]"/></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div><t t-esc="cantidad"/>
+                                    </div>
+                                </td>
+                                <td>
+                                   <div><t t-esc="line.price_display_one"/></div>
+                                </td>
+                                <td>
+                                    <div><t t-esc="env.pos.format_currency(line.price_display)"/></div>
+
+                                </td>
+                            </tr>
+                        </t>
+                        <br/>
+                        <tr>
+                            <th scope="col"><div>Art:
+                                <t t-esc="total_art"/></div>
+                            </th>
+                            <th scope="col"/>
+                            <th scope="col"/>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- Total -->
+                <div class="pos-receipt-right-align">--------</div>
+                <br/>
+                <div class="pos-receipt-amount">
+                    TOTAL
+                    <span t-esc="env.pos.format_currency(receipt.total_with_tax)" class="pos-receipt-right-align"/>
+                </div>
+                <t t-if="receipt.total_rounded != receipt.total_with_tax">
+                    <div class="pos-receipt-amount">
+                      Rounding
+                    <span t-esc='env.pos.format_currency(receipt.rounding_applied)' class="pos-receipt-right-align"/>
+                    </div>
+                    <div class="pos-receipt-amount">
+                      To Pay
+                     <span t-esc='env.pos.format_currency(receipt.total_rounded)' class="pos-receipt-right-align"/>
+                  </div>
+                </t>
+                <br/>
+
+
+                <!--<div>***(<t t-esc="receipt.text_amount"/>)*** </div> -->
+                <div>***(<t t-esc="env.pos.amount_to_letter(receipt.total_with_tax)"/>)*** </div>
+                <!-- Payment Lines -->
+                <br/>
+                <t t-foreach="receipt.paymentlines" t-as="line" t-key="line.cid">
+                    <div>
+                        <t t-esc="line.name"/>
+                        <span t-esc="env.pos.format_currency_no_symbol(line.amount)" class="pos-receipt-right-align"/>
+                    </div>
+                </t>
+                <br/>
+
+                <div class="pos-receipt-amount receipt-change">
+                    CHANGE
+                    <span t-esc="env.pos.format_currency(receipt.change)" class="pos-receipt-right-align"/>
+                </div>
+                <br/>
+
+                <!-- Extra Payment Info -->
+
+                <t t-if="receipt.total_discount">
+                    <div>
+                        Discounts
+                        <span t-esc="env.pos.format_currency(receipt.total_discount)" class="pos-receipt-right-align"/>
+                    </div>
+                </t>
+                <t t-if="isTaxIncluded">
+                    <t t-foreach="receipt.tax_details" t-as="tax" t-key="tax.name">
+                        <div>
+                            <t t-esc="tax.name"/>
+                            <span t-esc="env.pos.format_currency_no_symbol(tax.amount)"
+                                  class="pos-receipt-right-align"/>
+                        </div>
+                    </t>
+                    <div>
+                        Total Taxes
+                        <span t-esc="env.pos.format_currency(receipt.total_tax)" class="pos-receipt-right-align"/>
+                    </div>
+                </t>
+
+                <div class="before-footer"/>
+
+                <!-- Footer -->
+                <div t-if="receipt.footer_html" class="pos-receipt-center-align">
+                    <t t-raw="receipt.footer_html"/>
+                </div>
+
+                <div t-if="!receipt.footer_html and receipt.footer" class="pos-receipt-center-align"
+                     style="white-space:pre-line">
+                    <br/>
+                    <t t-esc="receipt.footer"/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <div class="after-footer">
+                    <t t-foreach="receipt.paymentlines" t-as="line">
+                        <t t-if="line.ticket">
+                            <br/>
+                            <div class="pos-payment-terminal-receipt">
+                                <t t-raw="line.ticket"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+
+                <br/>
+                <div class="pos-receipt-order-data">
+                    <div><t t-esc="receipt.name" /></div>
+                    <t t-if="receipt.date.localestring">
+                        <div><t t-esc="receipt.date.localestring" /></div>
+                    </t>
+                    <t t-else="">
+                        <div><t t-esc="receipt.date.validation_date" /></div>
+                    </t>
+                </div>
+                \<!-- Leyenda de al final-->
+
+                <div style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif;text-align: center; max-width: 100%;font-size: 14px">
+                    <br/>
+                    <br/>
+                    <span>Pago en una sola exhibición</span>
+                    <br/>
+                    <span>Gracias por su compra</span>
+                    <br/>
+                </div>
+                <div class="pos-center-aling"
+                     style="font-family: Helvetica,Monaco,Georgia,Futura,Arial,Verdana,sans-serif; max-width: 100%; padding: 2px;font-size: 14px">
+                                <br/>
+                    Por este pagaré, debo y me comprometo incondicionalmente pagar la orden de Distribuciones
+                    CREDO y/o
+                    <div><t t-esc="receipt.company.name"/></div>
+                    , la cantidad estipulada en este documento en un plazo máximo de 7 días
+                    contados
+                    a partir de la fecha impresa en el porte, el imcumplimiento generara un 3% mensual.
+                    <br/>
+                    <br/>
+                    <br/>
+                    ______________Firma______________
+                    <br/>
+                    <br/>
+                    SOLO SE FACTURAN LOS PEDIDOS PAGADOS DENTRO DE 24 HORAS, FECHA COMPRA
+                    <br/>
+                    <br/>
+                    En Cambio y/o Devoluciones deberá presentar el ticket de compra sin exceptión.
+                    <br/>
+                    <div align="center">
+                        <strong>
+                            <span>*** Se Aplican Restricciones ***</span>
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </xpath>
+    </t>
+
+</template>

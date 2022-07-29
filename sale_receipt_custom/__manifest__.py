@@ -11,7 +11,7 @@
     'author': 'Ing. Alejandro Garcia Magaña',
     'website': '',
     'license': 'LGPL-3',
-    'summary': 'Modificaciones en los recibos de venta ',
+    'summary': 'Modificaciones en los recibos de venta en el pos ',
 
     'depends': [
         'sale',
